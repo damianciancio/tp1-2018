@@ -1,5 +1,25 @@
 # TP1 - 2018
 
+## Integrante
+Damián Ciancio
+
+## Profesores
+Andrés Otaduy
+Adrián Meca
+
+## TP1 - TTADS
+
+## Especificación
+El proyecto comprenderá el desarrollo de una aplicación que cumpla con los siguientes requerimientos:
+
+* Poder consultar las canciones recomendadas para mi usuario en Spotify
+* Buscar canciones
+* Ver detalles de una canción en particular
+* Poder agregar canciones a una playlist
+
+### Fecha de Entrega 15/09/2018
+
+
 ## 1 - Enunciado
 ### 1.1 - Desarrollo
 Crear un nuevo frontend para un sitio que brinde una api pública, utilizando:
