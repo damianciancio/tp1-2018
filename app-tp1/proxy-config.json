@@ -1,0 +1,13 @@
+{
+  "/spotify/*": {
+    "target": {
+      "host": "accounts.spotify.com",
+      "protocol": "https:",
+      "port": 443
+    },
+    "pathRewrite": {"^/spotify" : ""},
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "info"
+  }
+}
