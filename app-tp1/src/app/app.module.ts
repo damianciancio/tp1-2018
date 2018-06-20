@@ -4,8 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { SpotifyService } from './spotify/spotify.service';
 
-
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SongsList } from './songs-list/songs-list.component';
@@ -13,7 +12,7 @@ import { SongDetails } from './song-details/song-details.component';
 
 const appRoutes: Routes = [
   {
-    path: 'songs/:id', component: SongDetails
+    path: 'songs/:id', component: SongDetails, data: { title: "hola"}
   },
   {
     path: 'songs', component: SongsList
@@ -34,6 +33,7 @@ const appRoutes: Routes = [
     SongDetails
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
@@ -42,7 +42,8 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  
+
   ngOnInit() {
-    
-  }
  }
+}

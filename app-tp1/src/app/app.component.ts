@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-root',
@@ -7,17 +9,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-
-
   constructor( 
-    private route: ActivatedRoute){
+    private route: ActivatedRoute,
+    private title: Title){
   }
 
   ngOnInit() {
-    // this.route.params.subscribe((data) =>
-    //  console.log(data)
-    // );
+    console.log(this.route)
 
   }
 }

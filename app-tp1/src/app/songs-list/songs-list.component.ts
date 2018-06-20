@@ -11,6 +11,7 @@ export class SongsList implements OnInit {
 
   songs = [];
   recommendations: any[];
+  inputSearch= "";
   
   constructor(private spotifyService: SpotifyService,
     private route: ActivatedRoute) { }
@@ -20,9 +21,20 @@ export class SongsList implements OnInit {
     this.spotifyService.getUserTracks().subscribe(
       function(data: any) { 
         console.log(data);
-        console.log(JSON.stringify(data));
-        component.songs = data;
+        component.songs = data.items.map((i) => return i.track);
       });
+  }
+
+  search() {
+    var searchTerm = this.inputSearch;
+    var component = this;
+
+    if (searchTerm) {
+      this.spotifyService.searchSong(searchTerm).subscribe(function(data){
+        console.log(data.tracks.items);
+        component.songs = data.tracks.items;
+      });
+    }
   }
 
 }

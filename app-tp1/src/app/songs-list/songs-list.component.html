@@ -1,4 +1,30 @@
-<li *ngFor="let track of songs.items">
-  <span>{{ track.track.name }}</span>
-  <span>{{ track.track.artists[0].name }}</span>
-</li>
+<div class="row">
+	<div class="col-md-12">
+		<div class="input-group mb-3">
+		  <input [(ngModel)]="inputSearch"  type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon2">
+		  <div class="input-group-append">
+		    <button class="btn btn-outline-secondary" (click)="search()" type="button">Buscar</button>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<ul class="list-group">
+	<li class="list-group-item" *ngFor="let track of songs">
+		<div class="row">
+			<div class="col-md-6">
+				<span class="song-name">{{ track.name }}</span><br>
+				<span class="song-artist">
+					<ng-container *ngFor="let artist of track.artists">
+						{{ artist.name }}{{$last ? '' : ', '}}		
+					</ng-container>
+				</span> 
+				<span class="song-artist">{{ track.album.name }}</span>
+			</div>
+			<div class="col-md-3 ml-auto">
+				<img src="{{track.album.images[2].url}}">
+				<a routerLink="/song/{{track.id}}">Ver</a>
+			</div>
+		</div>
+	</li>
+</ul>

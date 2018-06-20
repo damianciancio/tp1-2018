@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Injectable()
 export class SpotifyService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private title: Title) {
+    this.title.setTitle("Mis canciones");
+  }
   
   CLIENT_ID = "183ad72f43544e0a82a2c5bb211d8c87";
   CLIENT_SECRET = "2a1f492a810b4311b0eb11433571d2e2";
@@ -13,7 +16,7 @@ export class SpotifyService {
   SCOPES = "user-top-read user-library-read";
   BASE_API = "https://api.spotify.com/";
   BASE_API_ACCOUNT = "https://accounts.spotify.com/";  
-  access_token = "BQD-3LJdJYSUdZLTe90tqVDh059KoGFQUiNGDl_kx49U2CPqpGbDtjOsdfxY-THIRPqTH16qTyLifKLERCnKVbZpy1J5HI3D2D4ijoij9RYv75zeqPGiSoE-QYnxvNToVRlVDiC3lenqODJ_LBDbvfsnopoI";
+  access_token = "BQBqhnqeypBddjNk-E-VRt-89fCTfzAjfdxYH_q4r3S2bLBA4i0oqkI_HITlGTXCshuAYsS1oEHMgTTiJ1GuSp9hXY8o6xEXPBSdYG83_Oh1D9MzL44DoiSLzcjeI8koeE9J_dUWQXZXEP9fmM0ySdcQOf0c";
   token_type = null;
   expires_in = null;
   refresh_token = null;
@@ -74,10 +77,17 @@ export class SpotifyService {
   }
 
   getUserTracks() {
-    return this.getFromSpotify("v1/me/tracks ",{});
+    return this.http.get("/assets/songs-fake.json");
+    // return this.getFromSpotify("v1/me/tracks ",{});
   }
 
   getUserTop() {
     return this.getFromSpotify("v1/me/top/tracks",{});
+  }
+
+  searchSong(searchTerm) {
+    return this.getFromSpotify("v1/search", {
+      params: new HttpParams().set('q',searchTerm).append('type','track')
+    });
   }
 }
