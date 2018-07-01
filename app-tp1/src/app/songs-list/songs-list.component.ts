@@ -13,7 +13,8 @@ export class SongsList implements OnInit {
   recommendations: any[];
   inputSearch= "";
   
-  constructor(private spotifyService: SpotifyService,
+  constructor(
+    private spotifyService: SpotifyService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -21,8 +22,16 @@ export class SongsList implements OnInit {
     this.spotifyService.getUserTracks().subscribe(
       function(data: any) { 
         console.log(data);
-        component.songs = data.items.map((i) => return i.track);
+        component.songs = data.items.map((i) => { 
+          return i.track
+        });
       });
+
+      this.spotifyService.getUserPlaylists().subscribe(
+        function(data: any){
+          console.log(data);
+        }
+      );
   }
 
   search() {
@@ -30,7 +39,7 @@ export class SongsList implements OnInit {
     var component = this;
 
     if (searchTerm) {
-      this.spotifyService.searchSong(searchTerm).subscribe(function(data){
+      this.spotifyService.searchSong(searchTerm).subscribe(function(data: any){
         console.log(data.tracks.items);
         component.songs = data.tracks.items;
       });

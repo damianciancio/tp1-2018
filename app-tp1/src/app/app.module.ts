@@ -9,10 +9,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SongsList } from './songs-list/songs-list.component';
 import { SongDetails } from './song-details/song-details.component';
+import { MsToInterval } from './pipes/msToInterval.pipe';
+import { PlaylistsComponent } from './playlists/playlists.component';
+
+import { AppRoutingModule } from './app-routing.module';
 
 const appRoutes: Routes = [
   {
-    path: 'songs/:id', component: SongDetails, data: { title: "hola"}
+    path: 'songs/:id', component: SongDetails, data: { title: "Canción"}
   },
   {
     path: 'songs', component: SongsList
@@ -30,7 +34,9 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     SongsList,
-    SongDetails
+    SongDetails,
+    MsToInterval,
+    PlaylistsComponent
   ],
   imports: [
     FormsModule,

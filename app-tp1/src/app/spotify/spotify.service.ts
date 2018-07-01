@@ -13,20 +13,22 @@ export class SpotifyService {
   CLIENT_ID = "183ad72f43544e0a82a2c5bb211d8c87";
   CLIENT_SECRET = "2a1f492a810b4311b0eb11433571d2e2";
   REDIRECT_URI = "http://localhost:4200/auth-callback";
-  SCOPES = "user-top-read user-library-read";
+  SCOPES = "user-top-read user-library-read playlist-read-private playlist-modify-public playlist-modify-private";
   BASE_API = "https://api.spotify.com/";
   BASE_API_ACCOUNT = "https://accounts.spotify.com/";  
-  access_token = "BQBqhnqeypBddjNk-E-VRt-89fCTfzAjfdxYH_q4r3S2bLBA4i0oqkI_HITlGTXCshuAYsS1oEHMgTTiJ1GuSp9hXY8o6xEXPBSdYG83_Oh1D9MzL44DoiSLzcjeI8koeE9J_dUWQXZXEP9fmM0ySdcQOf0c";
+  access_token = "BQBo7K9cV3bgZV_BDsxt7ws61uNihZaQdJYtEj7LTJ_nbwvIJI4f7I-KyJDM6VR2tQkdzsU99F_CBNCNgfEseDXRl6Sy4xzFeiQGRIzh7P_SThcQ573okbW-rhhZg59Uqvc3Uq7ymzUrk_Zv2Fvf1r94kfK8R28yimQqhWkWwdXGLWAL_4_vchc0UunfzfhB5RrfQzvj4PbOPNRNyceNkqcoROUrxOpjww";
   token_type = null;
   expires_in = null;
   refresh_token = null;
   scope = null;
+  userData = null;
   
   setToken(token: string) {
     this.access_token = token;
   }
 
   updateAccessToken(code: string) {
+    var that = this;
     var headerHttp = new HttpHeaders(
       {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -49,7 +51,11 @@ export class SpotifyService {
       service.expires_in = data.expires_in;
       service.refresh_token = data.refresh_token;
       service.scope = data.scope;
-      service.router.navigate(['/songs'])
+      
+      that.getUserData().subscribe(function(data: any){
+        that.userData = data;
+      });
+      service.router.navigate(['/songs']);
     });
   }
 
@@ -65,6 +71,11 @@ export class SpotifyService {
     options.headers = new HttpHeaders().set('Authorization','Bearer ' + this.access_token);
     return this.http.get(this.BASE_API+relativeUrl, options);
   }
+  postSpotify(relativeUrl, httpParams) {
+    var options = {headers: { }};
+    options.headers = new HttpHeaders().set('Authorization','Bearer ' + this.access_token);
+    return this.http.post(this.BASE_API+relativeUrl, httpParams, options);
+  }
 
   getRecomendations() {
     return this.getFromSpotify("v1/recomendations",{});
@@ -77,17 +88,36 @@ export class SpotifyService {
   }
 
   getUserTracks() {
-    return this.http.get("/assets/songs-fake.json");
-    // return this.getFromSpotify("v1/me/tracks ",{});
+    // return this.http.get("/assets/songs-fake.json");
+    return this.getFromSpotify("v1/me/tracks ",{});
   }
 
   getUserTop() {
     return this.getFromSpotify("v1/me/top/tracks",{});
   }
 
+  getUserPlaylists() {
+    return this.getFromSpotify("v1/me/playlists", {});
+  }
+
   searchSong(searchTerm) {
     return this.getFromSpotify("v1/search", {
       params: new HttpParams().set('q',searchTerm).append('type','track')
     });
+  }
+
+  getUserData() {
+    return this.getFromSpotify('v1/me', {});
+  }
+
+  getTrack(id) {
+    return this.getFromSpotify("v1/tracks/"+id, {});
+  }
+
+  addSongToPlaylist(song, playlist) {
+    var params = {
+      uris: [song.uri]
+    };
+    return this.postSpotify("v1/users/" + this.userData.id + "/playlists/" + playlist.id +  "/tracks", params);
   }
 }

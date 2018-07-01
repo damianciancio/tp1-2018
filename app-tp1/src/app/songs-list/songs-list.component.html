@@ -13,17 +13,17 @@
 	<li class="list-group-item" *ngFor="let track of songs">
 		<div class="row">
 			<div class="col-md-6">
-				<span class="song-name">{{ track.name }}</span><br>
+				<img style="float:left;" src="{{track.album.images[2].url}}">
+				<a routerLink="/songs/{{track.id}}">
+					<span class="song-name">{{ track.name }}</span>
+				</a>
+				<br>
 				<span class="song-artist">
 					<ng-container *ngFor="let artist of track.artists">
 						{{ artist.name }}{{$last ? '' : ', '}}		
 					</ng-container>
 				</span> 
 				<span class="song-artist">{{ track.album.name }}</span>
-			</div>
-			<div class="col-md-3 ml-auto">
-				<img src="{{track.album.images[2].url}}">
-				<a routerLink="/song/{{track.id}}">Ver</a>
 			</div>
 		</div>
 	</li>
