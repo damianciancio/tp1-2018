@@ -15,7 +15,7 @@ export class SongDetails implements OnInit {
   	private route: ActivatedRoute, 
   	private spotifyService: SpotifyService,
   	private title: Title,
-  	private sanitizer: DomSanitizer
+	private sanitizer: DomSanitizer,
   	) { }
 
   ngOnInit() {
@@ -31,11 +31,22 @@ export class SongDetails implements OnInit {
 
   getSanitizeUrl(url){
   	return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-	}
+}
 	
 	openPlaylistsModal() {
 		this.spotifyService.userData
 		$('#playlists-add-song').modal('show');
+	}
+
+	addSongToPlaylist(track, playlist) {
+		
+		this.spotifyService.addSongToPlaylist(track, playlist).subscribe(function(data:any){
+		console.log(data);
+			if (data.hasOwnProperty('snapshot_id')) {
+				alert('Canción agregada correctamente');
+				$('#playlists-add-song').modal('hide');		
+			}
+		});
 	}
 
 }

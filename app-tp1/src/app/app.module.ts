@@ -14,12 +14,27 @@ import { PlaylistsComponent } from './playlists/playlists.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
+
+import { AuthGuard } from './auth-guard.service';
+
 const appRoutes: Routes = [
   {
-    path: 'songs/:id', component: SongDetails, data: { title: "Canción"}
+    path: 'songs/:id', 
+    component: SongDetails, 
+    canActivate: [AuthGuard],
+    data: { 
+      title: "Canción"
+    }
   },
   {
-    path: 'songs', component: SongsList
+    path: 'songs', 
+    component: SongsList,
+    canActivate: [AuthGuard],    
+    data: { 
+      title: "Listado de canciones"
+    }    
   },
   {
     path: 'login', component: LoginComponent
@@ -42,9 +57,11 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    LoadingBarRouterModule,
+    LoadingBarHttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [SpotifyService],
+  providers: [SpotifyService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

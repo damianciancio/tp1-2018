@@ -7,7 +7,7 @@ import { Title } from '@angular/platform-browser';
 export class SpotifyService {
 
   constructor(private http: HttpClient, private router: Router, private title: Title) {
-    this.title.setTitle("Mis canciones");
+
   }
   
   CLIENT_ID = "183ad72f43544e0a82a2c5bb211d8c87";
@@ -16,7 +16,7 @@ export class SpotifyService {
   SCOPES = "user-top-read user-library-read playlist-read-private playlist-modify-public playlist-modify-private";
   BASE_API = "https://api.spotify.com/";
   BASE_API_ACCOUNT = "https://accounts.spotify.com/";  
-  access_token = "BQBo7K9cV3bgZV_BDsxt7ws61uNihZaQdJYtEj7LTJ_nbwvIJI4f7I-KyJDM6VR2tQkdzsU99F_CBNCNgfEseDXRl6Sy4xzFeiQGRIzh7P_SThcQ573okbW-rhhZg59Uqvc3Uq7ymzUrk_Zv2Fvf1r94kfK8R28yimQqhWkWwdXGLWAL_4_vchc0UunfzfhB5RrfQzvj4PbOPNRNyceNkqcoROUrxOpjww";
+  access_token = null;
   token_type = null;
   expires_in = null;
   refresh_token = null;
@@ -25,6 +25,10 @@ export class SpotifyService {
   
   setToken(token: string) {
     this.access_token = token;
+  }
+
+  hasToken() {
+    return this.access_token !=null;  
   }
 
   updateAccessToken(code: string) {

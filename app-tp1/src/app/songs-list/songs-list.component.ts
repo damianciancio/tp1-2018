@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../spotify/spotify.service';
 import { ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-songs-list',
@@ -15,9 +16,11 @@ export class SongsList implements OnInit {
   
   constructor(
     private spotifyService: SpotifyService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle(this.route.snapshot.data.title);
     var component = this;
     this.spotifyService.getUserTracks().subscribe(
       function(data: any) { 

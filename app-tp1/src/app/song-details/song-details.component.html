@@ -23,4 +23,4 @@
 		<a [href]="track.album.external_urls.spotify">Ver album en Spotify</a>
 	</div>
 </div>
-<playlists [song]="track" ></playlists>
+<playlists (selectedPlaylist)="addSongToPlaylist(track, $event)" ></playlists>
