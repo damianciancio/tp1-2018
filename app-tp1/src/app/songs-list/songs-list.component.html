@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="input-group mb-3">
-		  <input [(ngModel)]="inputSearch"  type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon2">
+		  <input [(ngModel)]="inputSearch" (keyup.enter)="search()" type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="basic-addon2">
 		  <div class="input-group-append">
 		    <button class="btn btn-outline-secondary" (click)="search()" type="button">Buscar</button>
 		  </div>
@@ -9,7 +9,10 @@
 	</div>
 </div>
 
-<ul class="list-group">
+<ul class="list-group" infiniteScroll
+[infiniteScrollDistance]="2"
+[infiniteScrollThrottle]="50"
+(scrolled)="onScroll()">
 	<li class="list-group-item" *ngFor="let track of songs">
 		<div class="row">
 			<div class="col-md-12">

@@ -13,6 +13,8 @@ export class SongsList implements OnInit {
   songs = [];
   recommendations: any[];
   inputSearch= "";
+  currentOffset = 0;
+  limit = 20;
   
   constructor(
     private spotifyService: SpotifyService,
@@ -22,7 +24,7 @@ export class SongsList implements OnInit {
   ngOnInit() {
     this.title.setTitle(this.route.snapshot.data.title);
     var component = this;
-    this.spotifyService.getUserTracks().subscribe(
+    this.spotifyService.getUserTracks(this.limit, this.currentOffset).subscribe(
       function(data: any) { 
         console.log(data);
         component.songs = data.items.map((i) => { 
@@ -37,6 +39,19 @@ export class SongsList implements OnInit {
       );
   }
 
+  onScroll(){
+    var component = this;
+    this.currentOffset = this.currentOffset + this.limit;
+    this.spotifyService.getUserTracks(this.limit, this.currentOffset).subscribe(
+      function(data:any) {
+        console.log(data);
+        var newSongs = data.items.map((i) => { 
+          return i.track
+        });
+        Array.prototype.push.apply(component.songs, newSongs);        
+      }
+    )
+  }
   search() {
     var searchTerm = this.inputSearch;
     var component = this;

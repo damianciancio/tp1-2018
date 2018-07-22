@@ -12,7 +12,7 @@ Adrián Meca
 ## Especificación
 El proyecto comprenderá el desarrollo de una aplicación que cumpla con los siguientes requerimientos:
 
-* Poder consultar las canciones recomendadas para mi usuario en Spotify
+* Poder ver mis canciones guardadas en Spotify
 * Buscar canciones
 * Ver detalles de una canción en particular
 * Poder agregar canciones a una playlist

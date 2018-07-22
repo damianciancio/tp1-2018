@@ -19,6 +19,10 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 import { AuthGuard } from './auth-guard.service';
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 const appRoutes: Routes = [
   {
     path: 'songs/:id', 
@@ -56,6 +60,7 @@ const appRoutes: Routes = [
   imports: [
     FormsModule,
     BrowserModule,
+    InfiniteScrollModule,
     HttpClientModule,
     LoadingBarRouterModule,
     LoadingBarHttpClientModule,
@@ -69,4 +74,6 @@ export class AppModule {
 
   ngOnInit() {
  }
+
+
 }

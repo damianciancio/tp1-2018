@@ -91,9 +91,9 @@ export class SpotifyService {
     });
   }
 
-  getUserTracks() {
+  getUserTracks(limit, offset) {
     // return this.http.get("/assets/songs-fake.json");
-    return this.getFromSpotify("v1/me/tracks ",{});
+    return this.getFromSpotify("v1/me/tracks?limit="+limit+"&offset="+offset,{});
   }
 
   getUserTop() {
