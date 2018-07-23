@@ -30,13 +30,8 @@ export class SongsList implements OnInit {
         component.songs = data.items.map((i) => { 
           return i.track
         });
-      });
-
-      this.spotifyService.getUserPlaylists().subscribe(
-        function(data: any){
-          console.log(data);
-        }
-      );
+      }
+    );
   }
 
   onScroll(){

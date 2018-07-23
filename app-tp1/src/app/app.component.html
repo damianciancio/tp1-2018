@@ -1,7 +1,13 @@
 <ngx-loading-bar></ngx-loading-bar>
-<div class="container">
-	<h1>
-		{{ title.getTitle() }}
-	</h1>
-    <router-outlet></router-outlet>
+<div id="top-bar">
+	<span class="pull-right" *ngIf="spotify.userData && spotify.userData.display_name">Usuario actual <a [href]="spotify.userData.external_urls.spotify">{{ spotify.userData.display_name }}</a></span>
+	<span class="pull-right" *ngIf="spotify.userData && !spotify.userData.display_name">Usuario actual <a [href]="spotify.userData.external_urls.spotify">{{ spotify.userData.id }}</a></span>
+</div>
+<div id="application-container">
+	<div class="container">
+		<h1>
+			{{ title.getTitle() }}
+		</h1>
+		<router-outlet></router-outlet>
+	</div>
 </div>

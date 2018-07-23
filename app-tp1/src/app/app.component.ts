@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { SpotifyService } from './spotify/spotify.service';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { Title } from '@angular/platform-browser';
 export class AppComponent {
   constructor( 
     private route: ActivatedRoute,
-    private title: Title){
+    private title: Title,
+    private spotify: SpotifyService ){
   }
 
   ngOnInit() {

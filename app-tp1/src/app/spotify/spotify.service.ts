@@ -57,6 +57,7 @@ export class SpotifyService {
       service.scope = data.scope;
       
       that.getUserData().subscribe(function(data: any){
+        console.log(data);
         that.userData = data;
       });
       service.router.navigate(['/songs']);
