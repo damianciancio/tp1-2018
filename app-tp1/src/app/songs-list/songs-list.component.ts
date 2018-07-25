@@ -15,6 +15,7 @@ export class SongsList implements OnInit {
   inputSearch= "";
   currentOffset = 0;
   limit = 20;
+  searchTerm = "";
   
   constructor(
     private spotifyService: SpotifyService,
@@ -37,22 +38,33 @@ export class SongsList implements OnInit {
   onScroll(){
     var component = this;
     this.currentOffset = this.currentOffset + this.limit;
-    this.spotifyService.getUserTracks(this.limit, this.currentOffset).subscribe(
-      function(data:any) {
-        console.log(data);
-        var newSongs = data.items.map((i) => { 
-          return i.track
+    if(this.searchTerm){  
+      if (this.searchTerm) {
+        this.spotifyService.searchSong(this.searchTerm, this.currentOffset, this.limit).subscribe(function(data: any){
+          console.log(data.tracks.items);
+          component.songs = data.tracks.items;
         });
-        Array.prototype.push.apply(component.songs, newSongs);        
-      }
-    )
+      }  
+    } else {
+      this.spotifyService.getUserTracks(this.limit, this.currentOffset).subscribe(
+        function(data:any) {
+          console.log(data);
+          var newSongs = data.items.map((i) => { 
+            return i.track
+          });
+          Array.prototype.push.apply(component.songs, newSongs);        
+        }
+      )
+  }
+    
   }
   search() {
-    var searchTerm = this.inputSearch;
+    this.searchTerm = this.inputSearch;
     var component = this;
+    this.currentOffset = 0;
 
-    if (searchTerm) {
-      this.spotifyService.searchSong(searchTerm).subscribe(function(data: any){
+    if (this.searchTerm) {
+      this.spotifyService.searchSong(this.searchTerm, this.currentOffset, this.limit).subscribe(function(data: any){
         console.log(data.tracks.items);
         component.songs = data.tracks.items;
       });

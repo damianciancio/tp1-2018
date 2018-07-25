@@ -105,9 +105,9 @@ export class SpotifyService {
     return this.getFromSpotify("v1/me/playlists", {});
   }
 
-  searchSong(searchTerm) {
+  searchSong(searchTerm, offset, limit) {
     return this.getFromSpotify("v1/search", {
-      params: new HttpParams().set('q',searchTerm).append('type','track')
+      params: new HttpParams().set('q',searchTerm).append('type','track').append('limit',limit).append('offset',offset)
     });
   }
 
