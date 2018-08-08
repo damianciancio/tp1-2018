@@ -1,18 +1,22 @@
 <div *ngIf="track" class="row">
+	<div class="col-md-4">
+		<div class="row">
+			<div class="col-md-12">
+				<iframe [src]="getSanitizeUrl('https://open.spotify.com/embed?uri=spotify:track:' + track.id)" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+			</div>
+		</div>
+		<a [href]="track.external_urls.spotify">Ver en Spotify</a>
+		<div>
+			Duración: {{ track.duration_ms | msToInterval}}
+		</div>
+		<button class="btn" (click)="openPlaylistsModal()" >Agregar a Playlist</button>
+	</div>
 	<div class="song-details col-md-4">
 		<div class="song-artist">
 			<a [href]="artist.external_urls.spotify" *ngFor="let artist of track.artists">
 				<iframe [src]="getSanitizeUrl('https://open.spotify.com/follow/1/?uri=spotify:artist:' + artist.id + '&size=detail&theme=light')" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 			</a>	
-		</div>
-		<a [href]="track.external_urls.spotify">Escuchar en Spotify</a>
-		<div>
-			Duración: {{ track.duration_ms | msToInterval}}
-		</div>
-		<button class="btn" (click)="openPlaylistsModal()" >Agregar a Playlist</button>	
-	</div>
-	<div class="col-md-4">
-		<iframe [src]="getSanitizeUrl('https://open.spotify.com/embed?uri=spotify:track:' + track.id)" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+		</div>	
 	</div>
 </div>
 <div class="row">	
@@ -20,7 +24,7 @@
 		<h2>Acerca del álbum</h2>
 		<img [src]="track.album.images[1].url">
 		<div>{{ track.album.name }}</div>
-		<a [href]="track.album.external_urls.spotify">Ver album en Spotify</a>
+		<a [href]="track.album.external_urls.spotify">Ver en Spotify</a>
 	</div>
 </div>
 <playlists (selectedPlaylist)="addSongToPlaylist(track, $event)" ></playlists>

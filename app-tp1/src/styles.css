@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    color: #74B3CE;
+}
+
+input {
+    background-color: #004346 !important;
+}
+
+a {
+    color: #09BC8A;
+}
+
+a:hover {
+    color: #508991;
+}

@@ -1,4 +1,10 @@
 #top-bar {
     height: 100px;
     width: 100%;
+    background: #508991;
+    color: #172A3A;
+}
+
+#application-container {
+    background-color: #172A3A;
 }
