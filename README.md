@@ -16,6 +16,8 @@ El proyecto comprenderá el desarrollo de una aplicación que cumpla con los sig
 * Buscar canciones
 * Ver detalles de una canción en particular
 * Poder agregar canciones a una playlist
+### Para correr 
+ng serve --proxy-config proxy-config.json
 
 ### Fecha de Entrega 15/09/2018
 
