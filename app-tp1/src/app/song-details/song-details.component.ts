@@ -3,6 +3,7 @@ import { SpotifyService } from '../spotify/spotify.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 declare var $ :any;
+declare var bootbox: any;
 @Component({
   selector: 'app-song-details',
   templateUrl: './song-details.component.html',
@@ -10,12 +11,12 @@ declare var $ :any;
 })
 export class SongDetails implements OnInit {
 
-  track = null;
-  constructor(
-  	private route: ActivatedRoute, 
-  	private spotifyService: SpotifyService,
-  	private title: Title,
-	private sanitizer: DomSanitizer,
+  	track = null;
+  	constructor(
+		private route: ActivatedRoute, 
+		private spotifyService: SpotifyService,
+		private title: Title,
+		private sanitizer: DomSanitizer,
   	) { }
 
   ngOnInit() {
@@ -29,9 +30,9 @@ export class SongDetails implements OnInit {
 		);
   }
 
-  getSanitizeUrl(url){
-  	return this.sanitizer.bypassSecurityTrustResourceUrl(url);
-}
+  	getSanitizeUrl(url){
+  		return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+	}
 	
 	openPlaylistsModal() {
 		this.spotifyService.userData
@@ -43,8 +44,7 @@ export class SongDetails implements OnInit {
 		this.spotifyService.addSongToPlaylist(track, playlist).subscribe(function(data:any){
 		console.log(data);
 			if (data.hasOwnProperty('snapshot_id')) {
-				alert('Canción agregada correctamente');
-				$('#playlists-add-song').modal('hide');		
+				playlist.hideButton = true;	
 			}
 		});
 	}

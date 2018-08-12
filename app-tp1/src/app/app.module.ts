@@ -22,6 +22,7 @@ import { AuthGuard } from './auth-guard.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 const appRoutes: Routes = [
   {
@@ -64,7 +65,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     LoadingBarRouterModule,
     LoadingBarHttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AngularFontAwesomeModule
   ],
   providers: [SpotifyService,AuthGuard],
   bootstrap: [AppComponent]

@@ -12,8 +12,10 @@
           <li *ngFor="let playlist of playlists" 
               class="list-group-item" 
               style="cursor:pointer;"
-              (click)="select(playlist)">
+              >
             {{ playlist.name }}
+            <button *ngIf="!playlist.hideButton" class="btn btn-success btn-sm" style="float:right;" (click)="select(playlist)">Agregar</button>
+            <fa *ngIf="playlist.hideButton" style="float:right;color:green;" name="check"></fa>
           </li>
         </ul>
       </div>
