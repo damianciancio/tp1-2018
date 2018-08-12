@@ -26,10 +26,10 @@
     "@ngx-loading-bar/router": "^2.1.2",
     "@types/bootbox": "^4.4.36",
     "@types/jquery": "^3.3.5",
-    "bootbox": "^4.4.0",
     "bootstrap": "^4.1.1",
     "core-js": "^2.4.1",
     "jquery": "^3.3.1",
+    "ngx-infinite-scroll": "^6.0.1",
     "rxjs": "^6.2.1",
     "zone.js": "^0.8.26"
   },

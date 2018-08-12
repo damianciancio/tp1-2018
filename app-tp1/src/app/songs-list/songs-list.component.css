@@ -8,3 +8,7 @@ img {
 .list-group-item {
 	background-color: #004346;
 }
+
+#non-available-songs {
+	height: 100%;
+}

@@ -2,8 +2,10 @@
 	<ngx-loading-bar></ngx-loading-bar>
 	<div id="top-bar">
 		<div class="container">
-			<span class="pull-right" *ngIf="spotify.userData && spotify.userData.display_name">Usuario actual <a [href]="spotify.userData.external_urls.spotify">{{ spotify.userData.display_name }}</a></span>	
-			<span class="pull-right" *ngIf="spotify.userData && !spotify.userData.display_name">Usuario actual <a [href]="spotify.userData.external_urls.spotify">{{ spotify.userData.id }}</a></span>
+			<div>
+				<span class="current-user" *ngIf="spotify.userData && spotify.userData.display_name">Usuario actual <a [href]="spotify.userData.external_urls.spotify">{{ spotify.userData.display_name }}</a></span>	
+				<span class="current-user" *ngIf="spotify.userData && !spotify.userData.display_name">Usuario actual <a [href]="spotify.userData.external_urls.spotify">{{ spotify.userData.id }}</a></span>
+			</div>
 		</div>
 	</div>
 	<div class="container">

@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<ul class="list-group" infiniteScroll
+<ul class="list-group" *ngIf="songs.length" infiniteScroll
 [infiniteScrollDistance]="2"
 [infiniteScrollThrottle]="50"
 (scrolled)="onScroll()">
@@ -31,3 +31,4 @@
 		</div>
 	</li>
 </ul>
+<div id="non-available-songs" *ngIf="!songs.length" >No hay canciones disponibles</div>
