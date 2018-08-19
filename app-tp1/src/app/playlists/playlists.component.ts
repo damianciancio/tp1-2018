@@ -23,7 +23,6 @@ export class PlaylistsComponent implements OnInit {
     this.playlists = this.spotifyService.getUserPlaylists().subscribe(
       function(data: any) { 
         that.playlists = data.items;
-        console.log(data);
       }
     );
   }

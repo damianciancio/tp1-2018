@@ -22,7 +22,7 @@
 <div class="row">	
 	<div class="col-md-6">
 		<h2>Acerca del álbum</h2>
-		<img [src]="track.album.images[1].url">
+		<img alt="Portada del album {{ track.album.name }} del artista {{ track.album.artists[0].name}}" [src]="track.album.images[1].url">
 		<div>{{ track.album.name }}</div>
 		<a [href]="track.album.external_urls.spotify">Ver en Spotify</a>
 	</div>

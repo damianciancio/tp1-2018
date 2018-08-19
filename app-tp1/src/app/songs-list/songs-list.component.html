@@ -16,7 +16,7 @@
 	<li class="list-group-item" *ngFor="let track of songs">
 		<div class="row">
 			<div class="col-md-12">
-				<img style="float:left;" src="{{track.album.images[2].url}}">
+				<img style="float:left;" alt="Portada del album {{ track.album.name }} del artista {{ track.album.artists[0].name}}" src="{{track.album.images[2].url}}">
 				<a routerLink="/songs/{{track.id}}">
 					<span class="song-name">{{ track.name }}</span>
 				</a>

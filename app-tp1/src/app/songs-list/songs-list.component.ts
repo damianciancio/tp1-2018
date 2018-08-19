@@ -26,8 +26,7 @@ export class SongsList implements OnInit {
     this.title.setTitle(this.route.snapshot.data.title);
     var component = this;
     this.spotifyService.getUserTracks(this.limit, this.currentOffset).subscribe(
-      function(data: any) { 
-        console.log(data);
+      function(data: any) {
         component.songs = data.items.map((i) => { 
           return i.track
         });
@@ -41,14 +40,13 @@ export class SongsList implements OnInit {
     if(this.searchTerm){  
       if (this.searchTerm) {
         this.spotifyService.searchSong(this.searchTerm, this.currentOffset, this.limit).subscribe(function(data: any){
-          console.log(data.tracks.items);
           component.songs = data.tracks.items;
+          console.log(component.songs);
         });
       }  
     } else {
       this.spotifyService.getUserTracks(this.limit, this.currentOffset).subscribe(
         function(data:any) {
-          console.log(data);
           var newSongs = data.items.map((i) => { 
             return i.track
           });
@@ -65,7 +63,6 @@ export class SongsList implements OnInit {
 
     if (this.searchTerm) {
       this.spotifyService.searchSong(this.searchTerm, this.currentOffset, this.limit).subscribe(function(data: any){
-        console.log(data.tracks.items);
         component.songs = data.tracks.items;
       });
     }

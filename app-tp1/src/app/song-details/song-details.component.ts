@@ -25,7 +25,6 @@ export class SongDetails implements OnInit {
 			function(data) {
 				component.track = data;
 				component.title.setTitle(component.track.name);
-				console.log(data);
 			}
 		);
   }
@@ -35,14 +34,12 @@ export class SongDetails implements OnInit {
 	}
 	
 	openPlaylistsModal() {
-		this.spotifyService.userData
 		$('#playlists-add-song').modal('show');
 	}
 
 	addSongToPlaylist(track, playlist) {
 		
 		this.spotifyService.addSongToPlaylist(track, playlist).subscribe(function(data:any){
-		console.log(data);
 			if (data.hasOwnProperty('snapshot_id')) {
 				playlist.hideButton = true;	
 			}

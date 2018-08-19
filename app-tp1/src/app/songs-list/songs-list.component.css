@@ -12,3 +12,11 @@ img {
 #non-available-songs {
 	height: 100%;
 }
+
+input {
+	color: #74B3CE;
+}
+
+input:focus {
+	color: #74B3CE;
+}

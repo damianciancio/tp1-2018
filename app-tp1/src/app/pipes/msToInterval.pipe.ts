@@ -9,15 +9,11 @@ export class MsToInterval implements PipeTransform {
   	let restantSeconds = totalSeconds - minutes * 60;
 
 	let secondsString = restantSeconds.toString();
-  	console.log("restantSeconds:", restantSeconds);
+
   	if (restantSeconds < 10) {
 		secondsString = "" + "0" + restantSeconds.toString();
-  	}
-
-  	console.log("value:", value);
-  	console.log("totalSeconds:", totalSeconds);
-  	console.log("restantMiliseconds:", restantMiliseconds);
-  	console.log("minutes:", minutes);
+	}
+	
   	return minutes.toString() + ":" + secondsString; 
   }
 }
