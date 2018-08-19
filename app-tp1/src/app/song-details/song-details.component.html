@@ -1,5 +1,5 @@
-<div *ngIf="track" class="row">
-	<div class="col-md-4">
+<div *ngIf="track" class="row details-container">
+	<div class="col-md-6 col-lg-4 track-data">
 		<div class="row">
 			<div class="col-md-12">
 				<iframe [src]="getSanitizeUrl('https://open.spotify.com/embed?uri=spotify:track:' + track.id)" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -11,7 +11,7 @@
 		</div>
 		<button class="btn" (click)="openPlaylistsModal()" >Agregar a Playlist</button>
 	</div>
-	<div class="song-details col-md-4">
+	<div class="song-details col-md-6 col-lg-4">
 		<div class="song-artist">
 			<a [href]="artist.external_urls.spotify" *ngFor="let artist of track.artists">
 				<iframe [src]="getSanitizeUrl('https://open.spotify.com/follow/1/?uri=spotify:artist:' + artist.id + '&size=detail&theme=light')" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
@@ -19,7 +19,7 @@
 		</div>	
 	</div>
 </div>
-<div class="row">	
+<div *ngIf="track" class="row">	
 	<div class="col-md-6">
 		<h2>Acerca del álbum</h2>
 		<img alt="Portada del album {{ track.album.name }} del artista {{ track.album.artists[0].name}}" [src]="track.album.images[1].url">
