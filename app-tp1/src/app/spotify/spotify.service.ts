@@ -28,7 +28,7 @@ export class SpotifyService {
   }
 
   hasToken() {
-    return this.access_token !=null;  
+    return this.access_token != null;  
   }
 
   updateAccessToken(code: string) {
@@ -52,9 +52,13 @@ export class SpotifyService {
     this.http.post("/spotify/api/token", params.toString(), options).subscribe(function(data: any){
       service.access_token = data.access_token;
       service.token_type = data.token_type;
-      service.expires_in = data.expires_in;
+      service.expires_in = parseInt(data.expires_in);
       service.refresh_token = data.refresh_token;
       service.scope = data.scope;
+      console.log(service.expires_in);
+
+      window.localStorage.setItem("spo_accessToken", service.access_token);
+      window.localStorage.setItem("spo_expirationTokenDate", ((new Date()).getTime() + (service.expires_in * 100)).toString());
       
       that.getUserData().subscribe(function(data: any){
         that.userData = data;
@@ -123,5 +127,9 @@ export class SpotifyService {
       uris: [song.uri]
     };
     return this.postSpotify("v1/users/" + this.userData.id + "/playlists/" + playlist.id +  "/tracks", params);
+  }
+
+  getUserProfile(userId) {
+    return this.getFromSpotify("v1/users/" +  userId, {});
   }
 }
